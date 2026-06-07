@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name _;
+
+    location = /.well-known/matrix/client {
+        default_type application/json;
+        add_header Access-Control-Allow-Origin * always;
+        return 200 '{"m.homeserver":{"base_url":"https://${MATRIX_HOST}"}}';
+    }
+
+    location = /.well-known/matrix/server {
+        default_type application/json;
+        return 200 '{"m.server":"${MATRIX_HOST}:${MATRIX_PORT}"}';
+    }
+
+    location / {
+        return 404;
+    }
+}
