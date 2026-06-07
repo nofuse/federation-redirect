@@ -1,0 +1,9 @@
+services:
+  matrix-wellknown:
+    build: .
+    environment:
+      PUBLIC_MATRIX_DOMAIN: ${PUBLIC_MATRIX_DOMAIN:?set in Coolify, e.g. m.nofuse.org}
+      MATRIX_HOST: ${MATRIX_HOST:?set in Coolify, e.g. matrix.m.nofuse.org}
+      MATRIX_PORT: ${MATRIX_PORT:-443}
+    ports:
+      - "80"
